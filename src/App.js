@@ -6,12 +6,16 @@ import {
 } from "./styles/variables";
 
 const Container = styled.div`
+  height: 100vh;
   background-color: ${color_light_grayish_cyan};
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 600px) {
+    height: auto;
+  }
 `;
 
 const Splitter = styled.h1`
