@@ -26,8 +26,8 @@ const Container = styled.button`
   }
 `;
 
-const Button = ({ children }) => {
-  return <Container>{children}</Container>;
+const Button = ({ children, handleReset }) => {
+  return <Container onClick={handleReset}>{children}</Container>;
 };
 
 export default Button;

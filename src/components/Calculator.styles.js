@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import dollar from "../images/icon-dollar.svg";
 
 import {
   color_white,
@@ -37,6 +36,7 @@ export const InputContainer = styled.div`
 `;
 
 export const InputGroup = styled.div`
+  position: relative;
   margin-bottom: 2rem;
 
   label {
@@ -45,30 +45,38 @@ export const InputGroup = styled.div`
     font-size: 1.3rem;
     color: ${color_dark_grayish_cyan};
   }
+`;
 
-  input {
-    width: 100%;
-    padding: 0.8rem;
-    border: none;
-    background: url(${dollar}) no-repeat scroll 12px 12px;
-    // padding-left: 30px;
-    text-align: right;
+export const Input = styled.input`
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  background: url(${(props) => props.icon}) no-repeat scroll 12px 12px;
+  // padding-left: 30px;
+  text-align: right;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: ${color_very_dark_cyan};
+  font-family: "Space Mono", monospace;
+
+  &:focus {
+    outline: 2px solid ${color_strong_cyan};
+    border-radius: 2px;
+  }
+
+  &::-webkit-input-placeholder {
+    color: ${color_grayish_cyan};
     font-size: 1.7rem;
     font-weight: bold;
-    color: ${color_very_dark_cyan};
-    font-family: "Space Mono", monospace;
-
-    &:focus {
-      outline: 2px solid ${color_strong_cyan};
-      border-radius: 2px;
-    }
-
-    &::-webkit-input-placeholder {
-      color: ${color_grayish_cyan};
-      font-size: 1.7rem;
-      font-weight: bold;
-    }
   }
+`;
+
+export const ErrorMessage = styled.span`
+  display: ${(props) => (props.error ? "block" : "none")};
+  position: absolute;
+  top: 4px;
+  right: 0px;
+  color: orangered;
 `;
 
 export const SelectTip = styled.div`
@@ -88,7 +96,8 @@ export const Grid = styled.div`
   gap: 1rem;
 
   span {
-    background-color: ${color_very_dark_cyan};
+    background-color: ${(props) =>
+      props.changeColor ? color_grayish_cyan : color_very_dark_cyan};
     color: ${color_light_grayish_cyan};
     padding: 0.3rem;
     text-align: center;
@@ -101,6 +110,26 @@ export const Grid = styled.div`
     &:hover {
       background-color: ${color_strong_cyan};
       color: ${color_very_dark_cyan};
+    }
+  }
+
+  input {
+    max-width: 10rem;
+    border: none;
+    font-size: 1.8rem;
+    text-align: right;
+    color: ${color_grayish_cyan};
+    font-weight: bold;
+
+    &:focus {
+      outline: 2px solid ${color_strong_cyan};
+      border-radius: 2px;
+    }
+
+    &::-webkit-input-placeholder {
+      color: ${color_dark_grayish_cyan};
+      text-align: center;
+      font-weigth: bold;
     }
   }
 `;
