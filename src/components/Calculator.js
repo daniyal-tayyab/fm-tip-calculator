@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./Button";
 
 import {
@@ -17,9 +17,6 @@ import {
 
 import dollar from "../images/icon-dollar.svg";
 import person from "../images/icon-person.svg";
-import { NavLink } from "react-router-dom";
-
-import { color_dark_grayish_cyan } from "../styles/variables";
 
 const Calculator = () => {
   const [bill, setBill] = useState(0);
