@@ -58,10 +58,10 @@ export const Input = styled.input`
   font-weight: bold;
   color: ${color_very_dark_cyan};
   font-family: "Space Mono", monospace;
+  transition: all 0.2s;
 
   &:focus {
     outline: 2px solid ${color_strong_cyan};
-    border-radius: 2px;
   }
 
   &::-webkit-input-placeholder {
@@ -69,14 +69,29 @@ export const Input = styled.input`
     font-size: 1.7rem;
     font-weight: bold;
   }
+
+  &[aria-invalid="true"] {
+    outline: 2px solid orangered;
+  }
+
+  &[aria-invalid="true"] ~ span {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &[aria-invalid="false"] ~ span {
+    display: 0;
+  }
 `;
 
 export const ErrorMessage = styled.span`
-  display: ${(props) => (props.error ? "block" : "none")};
   position: absolute;
   top: 4px;
   right: 0px;
   color: orangered;
+  opacity: 0;
+  transform: translateY(3px);
+  transition: all 0.2s;
 `;
 
 export const SelectTip = styled.div`
@@ -104,6 +119,7 @@ export const Grid = styled.div`
     font-size: 2rem;
     border-radius: 3px;
     cursor: pointer;
+    text-decoration: none;
 
     transition: all 0.2s;
 

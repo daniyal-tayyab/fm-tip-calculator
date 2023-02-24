@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Button from "./Button";
 
 import {
@@ -17,6 +17,9 @@ import {
 
 import dollar from "../images/icon-dollar.svg";
 import person from "../images/icon-person.svg";
+import { NavLink } from "react-router-dom";
+
+import { color_dark_grayish_cyan } from "../styles/variables";
 
 const Calculator = () => {
   const [bill, setBill] = useState(0);
@@ -27,10 +30,8 @@ const Calculator = () => {
 
   const [billError, setBillError] = useState(false);
   const [peopleError, setPeopleError] = useState(false);
-  const [changeColor, setChangeColor] = useState(false);
 
   const handleBillChange = (e) => {
-    console.log(e.target.value == 0);
     if (e.target.value == 0) {
       setBillError(true);
       return;
@@ -54,7 +55,6 @@ const Calculator = () => {
 
   const handleTipClick = (amount) => {
     setTip(amount);
-    setChangeColor(true);
   };
 
   useEffect(() => {
@@ -83,15 +83,14 @@ const Calculator = () => {
             placeholder="0"
             icon={dollar}
             onChange={handleBillChange}
+            aria-invalid={billError}
           />
           <ErrorMessage error={billError}>Can't be zero</ErrorMessage>
         </InputGroup>
         <SelectTip>
           <p>Select tip %</p>
           <Grid>
-            <span onClick={() => handleTipClick(5)} changeColor={changeColor}>
-              5%
-            </span>
+            <span onClick={() => handleTipClick(5)}>5%</span>
             <span onClick={() => handleTipClick(10)}>10%</span>
             <span onClick={() => handleTipClick(15)}>15%</span>
             <span onClick={() => handleTipClick(25)}>25%</span>
@@ -112,6 +111,7 @@ const Calculator = () => {
             placeholder="0"
             icon={person}
             onChange={handlePeopleChange}
+            aria-invalid={peopleError}
           />
           <ErrorMessage error={peopleError}>Can't be zero</ErrorMessage>
         </InputGroup>
